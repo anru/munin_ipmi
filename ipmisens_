@@ -70,7 +70,8 @@ def get_data():
     status, output = gso("ipmitool sensor")
     for row in output.split("\n"):
         items = map(str.strip,row.split("|"))
-        field,value,units,status,lower_nonrecoverable,lower_critical,lower_non_critical,upper_non_critical,upper_critical,upper_nonrecoverable=items
+        # format ~= field,value,units,status,lower_nonrecoverable,lower_critical,lower_non_critical,upper_non_critical,upper_critical,upper_nonrecoverable
+        field, value = items[:2]
         if field_filter(items):
             if value == 'na': continue
             data.append(items)
